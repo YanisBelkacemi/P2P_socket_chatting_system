@@ -1,20 +1,21 @@
 import socket
 import threading
 
-def RecieveMessage(connection):
+def RecieveMessage(connection , adr):
     while True:
         try:
             message = connection.recv(1024).decode('utf-8')
             if message :
-                print('received message') 
+                print(f'[{adr}] : {message}') 
             else:
                 break
         except:
-            pass
+            break
 def SendMessage(connection):
     while True:
         message = input()
         connection.send(message.encode('utf-8'))
+        print(f'Me : {message}')
 def server(ip = "127.0.0.1" , port = 12345):
     server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
     server_socket.bind((ip, port))
@@ -22,7 +23,11 @@ def server(ip = "127.0.0.1" , port = 12345):
     print(f'Server is waiting on {ip}:{port}')
     conn , adr = server_socket.accept()
     print(f'connected {adr}')
-    threading.Thread(RecieveMessage, args=(conn ,)).start()
-    SendMessage(conn)
+    receive_message =threading.Thread(target = RecieveMessage, args=(conn , adr))
+    receive_message.start()
+    send_message = threading.Thread(target= SendMessage , args=(conn,))
+    send_message.start()
+    receive_message.join()
+    send_message.join()
 
 server()
