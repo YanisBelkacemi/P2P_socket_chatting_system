@@ -16,7 +16,7 @@ def SendMessage(connection):
         message = input()
         connection.send(message.encode('utf-8'))
         print(f'Me : {message}')
-def server(ip = "192.168.188.169" , port = 12345):
+def server(ip = "0.0.0.0" , port = 2096):
     server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
     server_socket.bind((ip, port))
     server_socket.listen(1)
