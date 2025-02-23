@@ -19,7 +19,7 @@ def send_messages(sock):
         sock.send(message.encode('utf-8'))
         print(f'Me : {message}')
 
-def connect_to_server(host='artyom.zapto.org', port=12345):
+def connect_to_server(host='https://rl-villages-carry-bags.trycloudflare.com', port=12345):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))
     print(f"Connected to {host}:{port}")
