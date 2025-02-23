@@ -16,10 +16,10 @@ def SendMessage(connection):
         message = input()
         connection.send(message.encode('utf-8'))
         print(f'Me : {message}')
-def server(ip = "0.0.0.0" , port = 2096):
+def server(ip = "176.59.82.169" , port = 9000):
     server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
     server_socket.bind((ip, port))
-    server_socket.listen(1)
+    server_socket.listen(5)
     print(f'Server is waiting on {ip}:{port}')
     conn , adr = server_socket.accept()
     print(f'connected {adr}')
