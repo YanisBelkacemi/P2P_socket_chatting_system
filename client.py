@@ -19,7 +19,7 @@ def send_messages(sock):
         sock.send(message.encode('utf-8'))
         print(f'Me : {message}')
 
-def connect_to_server(host='176.59.82.169', port=9000):
+def connect_to_server(host='127.0.0.1', port=5000):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))
     print(f"Connected to {host}:{port}")
